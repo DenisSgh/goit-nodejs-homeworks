@@ -1,9 +1,7 @@
 const listContacts = require("./listContacts");
 const updateContacts = require("./updateContacts");
 
-async function addContact(body) {
-  const { name, email, phone } = body;
-
+async function addContact({ name, email, phone }) {
   const contacts = await listContacts();
   const newContact = {
     id: contacts.length + 1,
