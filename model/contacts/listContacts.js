@@ -1,9 +1,8 @@
-// const contacts = require("../db/contacts.json");
+const contacts = require("../contacts.json");
+// const contacts = require("../../contacts.json");
 
-// async function listContacts() {
-//   // const data = await fs.readFile(contactsPath);
-//   // const contacts = JSON.parse(data);
-//   return contacts;
-// }
+async function listContacts() {
+  return contacts;
+}
 
-// module.exports = listContacts;
+module.exports = listContacts;
