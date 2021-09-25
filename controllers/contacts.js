@@ -1,4 +1,4 @@
-// const { NotFound, BadRequest } = require("http-errors");
+const { NotFound, BadRequest } = require("http-errors");
 const Joi = require("joi");
 
 const {
@@ -25,11 +25,7 @@ const getById = async (req, res) => {
   const contact = await getContactById(id);
 
   if (!contact) {
-    res.status(404).json({
-      message: "Not found",
-    });
-    return;
-    // throw new NotFound("Not found");
+    throw new NotFound("Not found");
   }
 
   res.status(200).json(contact);
@@ -40,11 +36,7 @@ const add = async (req, res) => {
   const { error } = joiSchema.validate(body);
 
   if (error) {
-    res.status(400).json({
-      message: "Missing required name field",
-    });
-    return;
-    // throw new BadRequest("Missing required name field");
+    throw new BadRequest("Missing required name field");
   }
 
   const contact = await addContact(body);
@@ -61,21 +53,13 @@ const updateById = async (req, res) => {
   const { error } = joiSchema.validate(body);
 
   if (error) {
-    res.status(400).json({
-      message: "Missing fields",
-    });
-    return;
-    // throw new BadRequest("missing fields");
+    throw new BadRequest("missing fields");
   }
 
   const contact = await updateContactById(id, body);
 
   if (!contact) {
-    res.status(404).json({
-      message: "Not found",
-    });
-    return;
-    // throw new NotFound("Not found");
+    throw new NotFound("Not found");
   }
 
   res.status(200).json({
@@ -89,11 +73,7 @@ const removeById = async (req, res) => {
   const contact = await removeContact(id);
 
   if (!contact) {
-    res.status(404).json({
-      message: "Not found",
-    });
-    return;
-    // throw new NotFound("Not found");
+    throw new NotFound("Not found");
   }
 
   res.status(200).json({
