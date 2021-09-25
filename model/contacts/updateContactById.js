@@ -1,15 +1,15 @@
-const listContacts = require("./listContacts");
-const updateContacts = require("./updateContacts");
+const listContacts = require('./listContacts')
+const updateContacts = require('./updateContacts')
 
-async function updateContactById(contactId, body) {
-  const contacts = await listContacts();
-  const idx = contacts.findIndex((contact) => contact.id === +contactId);
+const updateContactById = async (contactId, body) => {
+  const contacts = await listContacts()
+  const idx = contacts.findIndex(contact => contact.id === +contactId)
 
-  if (idx === -1) return null;
-  contacts[idx] = { ...contacts[idx], ...body };
-  updateContacts(contacts);
+  if (idx === -1) return null
+  contacts[idx] = { ...contacts[idx], ...body }
+  updateContacts(contacts)
 
-  return contacts[idx];
+  return contacts[idx]
 }
 
-module.exports = updateContactById;
+module.exports = updateContactById

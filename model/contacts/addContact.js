@@ -1,19 +1,19 @@
-const listContacts = require("./listContacts");
-const updateContacts = require("./updateContacts");
+const listContacts = require('./listContacts')
+const updateContacts = require('./updateContacts')
 
-async function addContact({ name, email, phone }) {
-  const contacts = await listContacts();
+const addContact = async ({ name, email, phone }) => {
+  const contacts = await listContacts()
   const newContact = {
     id: contacts.length + 1,
     name,
     email,
     phone,
-  };
+  }
 
-  contacts.push(newContact);
-  updateContacts(contacts);
+  contacts.push(newContact)
+  updateContacts(contacts)
 
-  return newContact;
+  return newContact
 }
 
-module.exports = addContact;
+module.exports = addContact

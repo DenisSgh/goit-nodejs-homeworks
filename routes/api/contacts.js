@@ -1,23 +1,23 @@
-const express = require("express");
+const express = require('express')
 
-const router = express.Router();
+const router = express.Router()
 const {
   getAll,
   getById,
   add,
   updateById,
   removeById,
-} = require("../../controllers");
-const { controllerWrapper } = require("../../middlewares");
+} = require('../../controllers')
+const { controllerWrapper } = require('../../middlewares')
 
-router.get("/", controllerWrapper(getAll));
+router.get('/', controllerWrapper(getAll))
 
-router.get("/:id", controllerWrapper(getById));
+router.get('/:id', controllerWrapper(getById))
 
-router.post("/", controllerWrapper(add));
+router.post('/', controllerWrapper(add))
 
-router.put("/:id", controllerWrapper(updateById));
+router.put('/:id', controllerWrapper(updateById))
 
-router.delete("/:id", controllerWrapper(removeById));
+router.delete('/:id', controllerWrapper(removeById))
 
-module.exports = router;
+module.exports = router
