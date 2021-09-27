@@ -1,5 +1,4 @@
-const { NotFound, BadRequest } = require('http-errors')
-const Joi = require('joi')
+const { NotFound } = require('http-errors')
 
 const {
   listContacts,
@@ -7,13 +6,7 @@ const {
   addContact,
   updateContactById,
   removeContact,
-} = require('../model/contacts/index')
-
-const joiSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().required(),
-  phone: Joi.string().required(),
-})
+} = require('../../model/contacts')
 
 const getAll = async (_, res) => {
   const contacts = await listContacts()
@@ -33,11 +26,6 @@ const getById = async (req, res) => {
 
 const add = async (req, res) => {
   const body = req.body
-  const { error } = joiSchema.validate(body)
-
-  if (error) {
-    throw new BadRequest('Missing required name field')
-  }
 
   const contact = await addContact(body)
 
@@ -50,11 +38,6 @@ const add = async (req, res) => {
 const updateById = async (req, res) => {
   const { id } = req.params
   const body = req.body
-  const { error } = joiSchema.validate(body)
-
-  if (error) {
-    throw new BadRequest('missing fields')
-  }
 
   const contact = await updateContactById(id, body)
 

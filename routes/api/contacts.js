@@ -7,16 +7,17 @@ const {
   add,
   updateById,
   removeById,
-} = require('../../controllers')
+} = require('../../controllers/contacts')
 const { controllerWrapper } = require('../../middlewares')
+const { validation } = require('../../middlewares/validation')
 
 router.get('/', controllerWrapper(getAll))
 
 router.get('/:id', controllerWrapper(getById))
 
-router.post('/', controllerWrapper(add))
+router.post('/', validation(), controllerWrapper(add))
 
-router.put('/:id', controllerWrapper(updateById))
+router.put('/:id', validation(), controllerWrapper(updateById))
 
 router.delete('/:id', controllerWrapper(removeById))
 
