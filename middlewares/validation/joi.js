@@ -22,9 +22,7 @@ const validation = () => {
         default:
           break
       }
-      next(error)
     }
-
     next()
   }
 }
