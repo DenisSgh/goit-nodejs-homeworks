@@ -7,9 +7,13 @@ const {
   add,
   updateById,
   removeById,
+  updateFavoriteById,
 } = require('../../controllers/contacts')
 const { controllerWrapper } = require('../../middlewares')
-const { validation } = require('../../middlewares/validation')
+const {
+  validation,
+  favoriteValidation,
+} = require('../../middlewares/validation')
 
 router.get('/', controllerWrapper(getAll))
 
@@ -20,5 +24,11 @@ router.post('/', validation(), controllerWrapper(add))
 router.put('/:id', validation(), controllerWrapper(updateById))
 
 router.delete('/:id', controllerWrapper(removeById))
+
+router.patch(
+  '/:id/favorite',
+  favoriteValidation(),
+  controllerWrapper(updateFavoriteById),
+)
 
 module.exports = router
