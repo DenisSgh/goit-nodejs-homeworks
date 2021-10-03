@@ -6,7 +6,14 @@ const {
   addContact,
   updateContactById,
   removeContact,
+  updateContactFavoriteById,
 } = require('../../model/contacts')
+
+// const Joi = require('joi')
+
+// const joiSchemaFavorite = Joi.object({
+//   favorite: Joi.boolean(),
+// })
 
 const getAll = async (_, res) => {
   const contacts = await listContacts()
@@ -64,4 +71,32 @@ const removeById = async (req, res) => {
   })
 }
 
-module.exports = { getAll, getById, add, updateById, removeById }
+const updateFavoriteById = async (req, res) => {
+  const { id } = req.params
+  const body = req.body
+  // const { error } = joiSchemaFavorite.validate(req.body)
+
+  // if (error) {
+  //   throw new BadRequest('Missing field favorite')
+  // }
+
+  const contact = await updateContactFavoriteById(id, body)
+
+  if (!contact) {
+    throw new NotFound('Not found')
+  }
+
+  res.status(200).json({
+    message: 'Favorite updated',
+    contact,
+  })
+}
+
+module.exports = {
+  getAll,
+  getById,
+  add,
+  updateById,
+  removeById,
+  updateFavoriteById,
+}

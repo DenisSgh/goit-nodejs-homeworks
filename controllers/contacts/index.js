@@ -1,3 +1,17 @@
-const { getAll, getById, add, updateById, removeById } = require('./contacts')
+const {
+  getAll,
+  getById,
+  add,
+  updateById,
+  removeById,
+  updateFavoriteById,
+} = require('./contacts')
 
-module.exports = { getAll, getById, add, updateById, removeById }
+module.exports = {
+  getAll,
+  getById,
+  add,
+  updateById,
+  removeById,
+  updateFavoriteById,
+}
