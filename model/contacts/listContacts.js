@@ -1,7 +1,8 @@
-const contacts = require('../../db/contacts.json')
+const { Contact } = require('../../db')
 
 const listContacts = async () => {
-  return contacts
+  console.log(Contact)
+  return await Contact.find({})
 }
 
 module.exports = listContacts

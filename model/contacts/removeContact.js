@@ -1,16 +1,7 @@
-const listContacts = require('./listContacts')
-const updateContacts = require('./updateContacts')
+const { Contact } = require('../../db')
 
 const removeContact = async contactId => {
-  const contacts = await listContacts()
-  const idx = contacts.findIndex(contact => contact.id === +contactId)
-
-  if (idx === -1) return null
-
-  contacts.splice(idx, 1)
-  updateContacts(contacts)
-
-  return true
+  return await Contact.findOneAndRemove({ _id: contactId })
 }
 
 module.exports = removeContact

@@ -1,11 +1,7 @@
-const listContacts = require('./listContacts')
+const { Contact } = require('../../db')
 
 const getContactById = async contactId => {
-  const contacts = await listContacts()
-  const idx = contacts.findIndex(contact => contact.id === +contactId)
-
-  if (idx === -1) return null
-  return contacts[idx]
+  return await Contact.findOne({ _id: contactId })
 }
 
 module.exports = getContactById
