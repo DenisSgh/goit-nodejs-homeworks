@@ -9,7 +9,7 @@ const joiSchema = Joi.object({
 })
 
 const joiSchemaFavorite = Joi.object({
-  favorite: Joi.boolean(),
+  favorite: Joi.boolean().required(),
 })
 
 const validation = () => {
