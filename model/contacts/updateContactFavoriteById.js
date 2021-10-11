@@ -1,8 +1,10 @@
 const { Contact } = require('../../db')
 
-const updateContactFavoriteById = async (contactId, body) => {
-  return await Contact.findByIdAndUpdate(contactId, body, { new: true })
-  // return await Contact.findOneAndUpdate({ _id: contactId }, body, { new: true })
+const updateContactFavoriteById = async (contactId, owner, favorite) => {
+  return await Contact.findOneAndUpdate({ _id: contactId, owner }, favorite, {
+    new: true,
+  })
+  // return await Contact.findByIdAndUpdate(contactId, favorite, { new: true })
 }
 
 module.exports = updateContactFavoriteById
