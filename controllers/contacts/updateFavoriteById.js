@@ -3,9 +3,10 @@ const { updateContactFavoriteById } = require('../../model/contacts')
 
 const updateFavoriteById = async (req, res) => {
   const { id } = req.params
-  const body = req.body
+  const { _id: owner } = req.user
+  const { favorite } = req.body
 
-  const contact = await updateContactFavoriteById(id, body)
+  const contact = await updateContactFavoriteById(id, owner, { favorite })
 
   if (!contact) {
     throw new NotFound('Not found')
