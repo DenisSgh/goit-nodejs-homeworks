@@ -1,6 +1,8 @@
-const { validation, favoriteValidation } = require('./joi')
+const { validation, favoriteValidation } = require('./contactsJoi')
+const { signupValidation } = require('./usersJoi')
 
 module.exports = {
   validation,
   favoriteValidation,
+  signupValidation,
 }
