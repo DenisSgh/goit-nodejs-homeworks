@@ -14,7 +14,13 @@ const updateFavoriteById = async (req, res) => {
 
   res.status(200).json({
     message: 'Favorite updated',
-    contact,
+    contact: {
+      id: contact._id,
+      name: contact.name,
+      email: contact.email,
+      phone: contact.phone,
+      favorite: contact.favorite,
+    },
   })
 }
 
