@@ -2,7 +2,7 @@ const { Conflict } = require('http-errors')
 const { User } = require('../../db')
 const bcrypt = require('bcrypt')
 
-const signupUser = async ({ email, password }) => {
+const signupUser = async ({ email, password, subscription }) => {
   const user = await User.findOne({ email })
 
   if (user) {
@@ -11,7 +11,11 @@ const signupUser = async ({ email, password }) => {
     )
   }
 
-  return await User.create({ email, password: bcrypt.hashSync(password, 10) })
+  return await User.create({
+    email,
+    password: bcrypt.hashSync(password, 10),
+    subscription,
+  })
 }
 
 module.exports = signupUser
