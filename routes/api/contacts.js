@@ -9,11 +9,13 @@ const {
   removeById,
   updateFavoriteById,
 } = require('../../controllers/contacts')
-const { controllerWrapper } = require('../../middlewares')
+const { controllerWrapper, authMiddleware } = require('../../middlewares')
 const {
   validation,
   favoriteValidation,
 } = require('../../middlewares/validation')
+
+router.use(authMiddleware)
 
 router.get('/', controllerWrapper(getAll))
 

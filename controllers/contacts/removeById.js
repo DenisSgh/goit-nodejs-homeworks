@@ -3,7 +3,9 @@ const { removeContact } = require('../../model/contacts')
 
 const removeById = async (req, res) => {
   const { id } = req.params
-  const contact = await removeContact(id)
+  const { _id: owner } = req.user
+
+  const contact = await removeContact(id, owner)
 
   if (!contact) {
     throw new NotFound('Not found')

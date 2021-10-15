@@ -1,7 +1,10 @@
 const { Contact } = require('../../db')
 
-const updateContactById = async (contactId, body) => {
-  return await Contact.findOneAndUpdate({ _id: contactId }, body, { new: true })
+const updateContactById = async (contactId, owner, body) => {
+  return await Contact.findOneAndUpdate({ _id: contactId, owner }, body, {
+    new: true,
+  })
+  // return await Contact.findByIdAndUpdate(contactId, body, { new: true })
 }
 
 module.exports = updateContactById
