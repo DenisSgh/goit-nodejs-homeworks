@@ -10,10 +10,10 @@ const authMiddleware = async (req, res, next) => {
     }
 
     //* Pulling the token from headers
-    const [, token] = req.headers.authorization.split(' ')
+    const [tokenType, token] = req.headers.authorization.split(' ')
 
     //* Checking if the token is empty
-    if (!token) {
+    if (!token || tokenType !== 'Bearer') {
       throw Unauthorized('Not authorized')
     }
 
