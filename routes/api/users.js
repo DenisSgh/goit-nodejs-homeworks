@@ -8,6 +8,8 @@ const {
   current,
   subscription,
   avatar,
+  verify,
+  reVerify,
 } = require('../../controllers/users')
 
 const {
@@ -19,11 +21,16 @@ const {
 const {
   signupValidation,
   subscriptionValidation,
+  emailValidation,
 } = require('../../middlewares/validation')
 
 router.post('/signup', signupValidation(), controllerWrapper(signup))
 
 router.post('/login', signupValidation(), controllerWrapper(login))
+
+router.get('/verify/:verificationToken', controllerWrapper(verify))
+
+router.post('/verify', emailValidation(), controllerWrapper(reVerify))
 
 router.use(authMiddleware)
 
