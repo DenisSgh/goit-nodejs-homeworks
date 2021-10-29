@@ -22,7 +22,7 @@ const {
   signupValidation,
   subscriptionValidation,
   emailValidation,
-} = require('../../middlewares/validation')
+} = require('../../middlewares/validation/users')
 
 router.post('/signup', signupValidation(), controllerWrapper(signup))
 
