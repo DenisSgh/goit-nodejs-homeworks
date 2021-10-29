@@ -11,6 +11,10 @@ const subscriptionJoiSchema = Joi.object({
   subscription: Joi.string().valid('starter', 'pro', 'business').required(),
 })
 
+const emailJoiSchema = Joi.object({
+  email: Joi.string().required(),
+})
+
 const signupValidation = () => {
   return (req, res, next) => {
     const { error } = joiSchema.validate(req.body)
@@ -33,7 +37,19 @@ const subscriptionValidation = () => {
   }
 }
 
+const emailValidation = () => {
+  return (req, res, next) => {
+    const { error } = emailJoiSchema.validate(req.body)
+
+    if (error) {
+      throw new BadRequest('Missing required field email')
+    }
+    next()
+  }
+}
+
 module.exports = {
   signupValidation,
   subscriptionValidation,
+  emailValidation,
 }

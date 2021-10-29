@@ -1,9 +1,14 @@
 const { validation, favoriteValidation } = require('./contactsJoi')
-const { signupValidation, subscriptionValidation } = require('./usersJoi')
+const {
+  signupValidation,
+  subscriptionValidation,
+  emailValidation,
+} = require('./usersJoi')
 
 module.exports = {
   validation,
   favoriteValidation,
   signupValidation,
   subscriptionValidation,
+  emailValidation,
 }
