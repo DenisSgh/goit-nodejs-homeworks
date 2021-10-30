@@ -7,10 +7,6 @@ const joiSchema = Joi.object({
   subscription: Joi.string().valid('starter', 'pro', 'business'),
 })
 
-const subscriptionJoiSchema = Joi.object({
-  subscription: Joi.string().valid('starter', 'pro', 'business').required(),
-})
-
 const signupValidation = () => {
   return (req, res, next) => {
     const { error } = joiSchema.validate(req.body)
@@ -22,18 +18,4 @@ const signupValidation = () => {
   }
 }
 
-const subscriptionValidation = () => {
-  return (req, res, next) => {
-    const { error } = subscriptionJoiSchema.validate(req.body)
-
-    if (error) {
-      throw new BadRequest(error.message)
-    }
-    next()
-  }
-}
-
-module.exports = {
-  signupValidation,
-  subscriptionValidation,
-}
+module.exports = signupValidation

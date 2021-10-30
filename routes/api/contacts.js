@@ -11,9 +11,9 @@ const {
 } = require('../../controllers/contacts')
 const { controllerWrapper, authMiddleware } = require('../../middlewares')
 const {
-  validation,
+  contactValidation,
   favoriteValidation,
-} = require('../../middlewares/validation')
+} = require('../../middlewares/validation/contacts')
 
 router.use(authMiddleware)
 
@@ -21,9 +21,9 @@ router.get('/', controllerWrapper(getAll))
 
 router.get('/:id', controllerWrapper(getById))
 
-router.post('/', validation(), controllerWrapper(add))
+router.post('/', contactValidation(), controllerWrapper(add))
 
-router.put('/:id', validation(), controllerWrapper(updateById))
+router.put('/:id', contactValidation(), controllerWrapper(updateById))
 
 router.delete('/:id', controllerWrapper(removeById))
 

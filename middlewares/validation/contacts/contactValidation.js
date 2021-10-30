@@ -8,11 +8,7 @@ const joiSchema = Joi.object({
   favorite: Joi.boolean(),
 })
 
-const joiSchemaFavorite = Joi.object({
-  favorite: Joi.boolean().required(),
-})
-
-const validation = () => {
+const contactValidation = () => {
   return (req, res, next) => {
     const { error } = joiSchema.validate(req.body)
 
@@ -32,18 +28,4 @@ const validation = () => {
   }
 }
 
-const favoriteValidation = () => {
-  return (req, res, next) => {
-    const { error } = joiSchemaFavorite.validate(req.body)
-
-    if (error) {
-      throw new BadRequest('Missing field favorite')
-    }
-    next()
-  }
-}
-
-module.exports = {
-  validation,
-  favoriteValidation,
-}
+module.exports = contactValidation

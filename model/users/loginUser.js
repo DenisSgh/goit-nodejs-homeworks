@@ -7,12 +7,12 @@ const { User } = require('../../db')
 const loginUser = async ({ email, password }) => {
   const user = await User.findOne({ email })
 
-  if (!user) {
+  if (!user || !bcrypt.compareSync(password, user.password)) {
     throw new Unauthorized('Email or password is wrong')
   }
 
-  if (!bcrypt.compareSync(password, user.password)) {
-    throw new Unauthorized('Email or password is wrong')
+  if (!user.verify) {
+    throw new Unauthorized('Email is not verified')
   }
 
   const token = jwt.sign(
